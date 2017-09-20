@@ -44,7 +44,7 @@ system(sprintf("schtasks /create /sd %s /sc %s /tn %s /tr \"%s\" /st %s", date, 
 
 recurrence <- "daily"
 task_name <- "extract"
-bat_loc <- "C:\\Users\\mcherrie\\batchprocessing\\download.bat"
+bat_loc <- "C:\\Users\\mcherrie\\batchprocessing\\extract.bat"
 time <- "01:00"
 date<-"12/09/2017"
 

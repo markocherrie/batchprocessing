@@ -17,8 +17,7 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 'help.start()' for an HTML browser interface to help.
 Type 'q()' to quit R.
 
-[Previously saved workspace restored]
-
+> setwd("C:/Users/mcherrie/batchprocessing")
 > library(rgdal)
 Loading required package: sp
 rgdal: version: 1.2-8, (SVN revision 663)
@@ -31,26 +30,17 @@ rgdal: version: 1.2-8, (SVN revision 663)
 Warning message:
 package 'rgdal' was built under R version 3.3.3 
 > library(raster)
-
-Attaching package: 'raster'
-
-The following object is masked _by_ '.GlobalEnv':
-
-    interpolate
-
 Warning message:
 package 'raster' was built under R version 3.3.3 
 > 
-> spatialstats<-function(boundary){
-+ 
-+   rlist=list.files("raster/", pattern=".img$", full.names=TRUE) 
+> spatialstats<-function(boundary){  
 +   
 +   # add the polygon layer you want the statistics by
 +   inshp=paste0(boundary)
 +   
-+   # test raster
++   rlist=list.files("raster/", pattern=".img$", full.names=TRUE) 
 +   rst<-raster(rlist[1])
-+   
++ 
 +   # Read polygon feature class shapefile
 +   p <- readOGR(dsn="auxdata", layer=inshp)
 +   p <- spTransform(p,crs(rst))
@@ -86,12 +76,15 @@ package 'raster' was built under R version 3.3.3
 +     file.remove(paste0(rlist, ".aux.xml"))
 +   }
 + }
+> 
 > spatialstats("DZ_2011_EoR_Edinburgh_City_of")
 OGR data source with driver: ESRI Shapefile 
 Source: "auxdata", layer: "DZ_2011_EoR_Edinburgh_City_of"
 with 548 features
 It has 5 fields
-> 
-> proc.time()
-   user  system elapsed 
-   1.74    0.09    3.33 
+Error in .local(.Object, ...) : 
+
+Error in .rasterObjectFromFile(x, band = band, objecttype = "RasterLayer",  : 
+  Cannot create a RasterLayer object from this file. (file does not exist)
+Calls: spatialstats ... raster -> raster -> .local -> .rasterObjectFromFile
+Execution halted

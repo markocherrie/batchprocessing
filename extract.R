@@ -7,7 +7,7 @@ spatialstats<-function(boundary){
   # add the polygon layer you want the statistics by
   inshp=paste0(boundary)
   
-  rlist=list.files("raster/", pattern=".img$", full.names=TRUE) 
+  rlist=list.files("raster", pattern=".img$", full.names=TRUE) 
   rst<-raster(rlist[1])
 
   # Read polygon feature class shapefile
@@ -29,7 +29,7 @@ spatialstats<-function(boundary){
     r <- raster(rdata)
     # Extract raster values to list object
     # possibly use coordinates if this doesnt work
-    r.vals <- extract(r, coordinates(p), small=TRUE)
+    r.vals <- extract(r, p, small=TRUE)
     # Use list apply to calculate mean for each polygon
     r.mean <- lapply(r.vals, FUN=mean)
     r.mean <- data.frame(matrix(unlist(r.mean)))
@@ -46,4 +46,4 @@ spatialstats<-function(boundary){
   }
 }
 
-spatialstats("DZ_2011_EoR_Edinburgh_City_of")
+spatialstats("LA")
