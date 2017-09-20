@@ -1,0 +1,97 @@
+
+R version 3.3.2 (2016-10-31) -- "Sincere Pumpkin Patch"
+Copyright (C) 2016 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[Previously saved workspace restored]
+
+> library(rgdal)
+Loading required package: sp
+rgdal: version: 1.2-8, (SVN revision 663)
+ Geospatial Data Abstraction Library extensions to R successfully loaded
+ Loaded GDAL runtime: GDAL 2.0.1, released 2015/09/15
+ Path to GDAL shared files: C:/R/rgdal/gdal
+ Loaded PROJ.4 runtime: Rel. 4.9.2, 08 September 2015, [PJ_VERSION: 492]
+ Path to PROJ.4 shared files: C:/R/rgdal/proj
+ Linking to sp version: 1.2-5 
+Warning message:
+package 'rgdal' was built under R version 3.3.3 
+> library(raster)
+
+Attaching package: 'raster'
+
+The following object is masked _by_ '.GlobalEnv':
+
+    interpolate
+
+Warning message:
+package 'raster' was built under R version 3.3.3 
+> 
+> spatialstats<-function(boundary){
++ 
++   rlist=list.files("raster/", pattern=".img$", full.names=TRUE) 
++   
++   # add the polygon layer you want the statistics by
++   inshp=paste0(boundary)
++   
++   # test raster
++   rst<-raster(rlist[1])
++   
++   # Read polygon feature class shapefile
++   p <- readOGR(dsn="auxdata", layer=inshp)
++   p <- spTransform(p,crs(rst))
++   
++   # what the output will be called
++   out<- sub("extract/", "", rlist[1])
++   out<- sub (".img","", out)
++   # if only year is required run next bit of code
++   # out<- substr(out,1,4)
++   outshp=paste0("UV",out)
++   
++   for (i in rlist){
++     rdata <- i
++     name<- gsub("raster/", "", rdata)
++     name<- sub (".img","", name)
++     # Read raster
++     r <- raster(rdata)
++     # Extract raster values to list object
++     # possibly use coordinates if this doesnt work
++     r.vals <- extract(r, coordinates(p), small=TRUE)
++     # Use list apply to calculate mean for each polygon
++     r.mean <- lapply(r.vals, FUN=mean)
++     r.mean <- data.frame(matrix(unlist(r.mean)))
++     # Join mean values to polygon data
++     r.mean<-data.frame(r.mean)
++     names(r.mean)<-name
++     p@data <- data.frame(p@data, r.mean)
++     q<-data.frame(p)
++     write.csv(q, paste0("extract/", name,".csv"), row.names=F)
++     file.copy(rlist, "rasterrepository")
++     file.copy(paste0(rlist, ".aux.xml"), "rasterrepository")
++     file.remove(rlist)
++     file.remove(paste0(rlist, ".aux.xml"))
++   }
++ }
+> spatialstats("DZ_2011_EoR_Edinburgh_City_of")
+OGR data source with driver: ESRI Shapefile 
+Source: "auxdata", layer: "DZ_2011_EoR_Edinburgh_City_of"
+with 548 features
+It has 5 fields
+> 
+> proc.time()
+   user  system elapsed 
+   1.74    0.09    3.33 
