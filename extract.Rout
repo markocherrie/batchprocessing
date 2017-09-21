@@ -38,7 +38,7 @@ package 'raster' was built under R version 3.3.3
 +   # add the polygon layer you want the statistics by
 +   inshp=paste0(boundary)
 +   
-+   rlist=list.files("raster/", pattern=".img$", full.names=TRUE) 
++   rlist=list.files("raster", pattern=".img$", full.names=TRUE) 
 +   rst<-raster(rlist[1])
 + 
 +   # Read polygon feature class shapefile
@@ -60,7 +60,7 @@ package 'raster' was built under R version 3.3.3
 +     r <- raster(rdata)
 +     # Extract raster values to list object
 +     # possibly use coordinates if this doesnt work
-+     r.vals <- extract(r, coordinates(p), small=TRUE)
++     r.vals <- extract(r, p, small=TRUE)
 +     # Use list apply to calculate mean for each polygon
 +     r.mean <- lapply(r.vals, FUN=mean)
 +     r.mean <- data.frame(matrix(unlist(r.mean)))
@@ -77,14 +77,12 @@ package 'raster' was built under R version 3.3.3
 +   }
 + }
 > 
-> spatialstats("DZ_2011_EoR_Edinburgh_City_of")
+> spatialstats("LA")
 OGR data source with driver: ESRI Shapefile 
-Source: "auxdata", layer: "DZ_2011_EoR_Edinburgh_City_of"
-with 548 features
-It has 5 fields
-Error in .local(.Object, ...) : 
-
-Error in .rasterObjectFromFile(x, band = band, objecttype = "RasterLayer",  : 
-  Cannot create a RasterLayer object from this file. (file does not exist)
-Calls: spatialstats ... raster -> raster -> .local -> .rasterObjectFromFile
-Execution halted
+Source: "auxdata", layer: "LA"
+with 32 features
+It has 2 fields
+> 
+> proc.time()
+   user  system elapsed 
+   5.60    0.53   48.15 

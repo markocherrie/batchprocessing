@@ -65,4 +65,4 @@ package 'gstat' was built under R version 3.3.3
 > 
 > proc.time()
    user  system elapsed 
-  41.15    0.37   43.63 
+  43.47    0.39  145.59 

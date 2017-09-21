@@ -59,4 +59,4 @@ package 'reshape2' was built under R version 3.3.3
 > 
 > proc.time()
    user  system elapsed 
-  33.29    0.90   38.78 
+  35.63    1.01   84.70 
