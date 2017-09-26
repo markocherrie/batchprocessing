@@ -52,11 +52,9 @@ package 'reshape2' was built under R version 3.3.3
 > 
 > ######################################
 > lapply(infiles , change.files)
-[[1]]
-[1] TRUE
-
+list()
 > ######################################
 > 
 > proc.time()
    user  system elapsed 
-  35.63    1.01   84.70 
+   0.79    0.23  127.78 
