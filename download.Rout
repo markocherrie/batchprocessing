@@ -37,11 +37,11 @@ Type 'q()' to quit R.
 + }
 > ###########################################################
 > UVdownload("MYD", datetoday, "uvb", "daily")
-trying URL 'ftp://apollo.eorc.jaxa.jp/pub/JASMES/Global_05km/uvb/daily/201709/MYD02SSH_A20170924Av1_v811_7200_3601_uvb__8b.gz'
-ERROR : cannot open URL 'ftp://apollo.eorc.jaxa.jp/pub/JASMES/Global_05km/uvb/daily/201709/MYD02SSH_A20170924Av1_v811_7200_3601_uvb__8b.gz' 
-trying URL 'ftp://apollo.eorc.jaxa.jp/pub/JASMES/Global_05km/uvb/daily/201709/MOD02SSH_A20170924Av1_v811_7200_3601_uvb__8b.gz'
+trying URL 'ftp://apollo.eorc.jaxa.jp/pub/JASMES/Global_05km/uvb/daily/201709/MYD02SSH_A20170925Av1_v811_7200_3601_uvb__8b.gz'
+ERROR : cannot open URL 'ftp://apollo.eorc.jaxa.jp/pub/JASMES/Global_05km/uvb/daily/201709/MYD02SSH_A20170925Av1_v811_7200_3601_uvb__8b.gz' 
+trying URL 'ftp://apollo.eorc.jaxa.jp/pub/JASMES/Global_05km/uvb/daily/201709/MOD02SSH_A20170925Av1_v811_7200_3601_uvb__8b.gz'
 Error in download.file(searchFTP, destfile = paste0(getwd(), "/rawdata/",  : 
-  cannot open URL 'ftp://apollo.eorc.jaxa.jp/pub/JASMES/Global_05km/uvb/daily/201709/MOD02SSH_A20170924Av1_v811_7200_3601_uvb__8b.gz'
+  cannot open URL 'ftp://apollo.eorc.jaxa.jp/pub/JASMES/Global_05km/uvb/daily/201709/MOD02SSH_A20170925Av1_v811_7200_3601_uvb__8b.gz'
 Calls: UVdownload ... tryCatchList -> tryCatchOne -> <Anonymous> -> download.file
 In addition: Warning messages:
 1: In download.file(searchFTP, destfile = paste0(getwd(), "/rawdata/",  :
