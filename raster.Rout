@@ -57,9 +57,12 @@ package 'gstat' was built under R version 3.3.3
 > 
 > ############################################
 > lapply(infiles, interpolate)
-list()
+[inverse distance weighted interpolation]
+[[1]]
+[1] TRUE
+
 > ############################################
 > 
 > proc.time()
    user  system elapsed 
-   1.46    0.06    3.40 
+  45.80    0.23   48.98 

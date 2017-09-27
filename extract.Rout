@@ -78,9 +78,11 @@ package 'raster' was built under R version 3.3.3
 + }
 > 
 > spatialstats("LA")
-Error in .local(.Object, ...) : 
-
-Error in .rasterObjectFromFile(x, band = band, objecttype = "RasterLayer",  : 
-  Cannot create a RasterLayer object from this file. (file does not exist)
-Calls: spatialstats ... raster -> raster -> .local -> .rasterObjectFromFile
-Execution halted
+OGR data source with driver: ESRI Shapefile 
+Source: "auxdata", layer: "LA"
+with 32 features
+It has 2 fields
+> 
+> proc.time()
+   user  system elapsed 
+   5.24    0.35    6.02 

@@ -1,5 +1,6 @@
 #!/bin/bash
 cd C:/Users/mcherrie/batchprocessing/rawdata
+find . -type f -size 0 | xargs rm
 gzip -d *.gz
 rm *.gz 
 FILES=*
